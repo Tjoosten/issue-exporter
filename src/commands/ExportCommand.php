@@ -28,9 +28,8 @@ class ExportCommand extends Command
     /**
      * Command logic
      *
-     * @param  InputInterface  $input
-     * @param  OutputInterface $output
-     * @paraz  GitHub $api
+     * @param   InputInterface  $input
+     * @param   OutputInterface $output
      * @return  Void|int|null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
