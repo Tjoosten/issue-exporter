@@ -17,9 +17,9 @@
     "config": {
         "bin-dir": "./"
     },
-    "autoload": {x
+    "autoload": {
         "psr-4": {
-            "Tjoosten\\Github\\Issues": "src/"
+            "Tjoosten\\Github\\Issues\\": "src/"
         }
     }
 }
