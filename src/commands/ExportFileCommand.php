@@ -12,7 +12,7 @@ use Tjoosten\Github\Issues\Utils\Github;
  *
  * @package Tjoosten\Github\Issues\Commands
  */
-class ExportCommand extends Command
+class ExportFileCommand extends Command
 {
     /**
      * Command configuration.

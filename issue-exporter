@@ -2,9 +2,7 @@
 
 <?php
 
-// set to run indefinitely if needed
-set_time_limit(0);
-
+set_time_limit(0);              // Set to run indefinitely if needed
 error_reporting(E_ALL);         // For debugging propose
 ini_set('display_errors', 1);   // For debugging propose
 
@@ -21,5 +19,5 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 
 
 $application = new \Symfony\Component\Console\Application('Issue exporter', '1.0.0');
-$application->add(new \Tjoosten\Github\Issues\Commands\ExportCommand);
+$application->add(new \Tjoosten\Github\Issues\Commands\ExportFileCommand);
 $application->run();
