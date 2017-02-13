@@ -21,7 +21,7 @@ class ExportCommand extends Command
      */
     protected function configure()
     {
-        $this->setName('issues:clone');
+        $this->setName('issues:clone-file');
         $this->setDescription('Clone the repository issues locally.');
     }
 
@@ -41,7 +41,6 @@ class ExportCommand extends Command
         $githubData =  $githubApi->authencate($user, $password, $method)->getIssues($creator, $repo);
         // End querying the GitHub api wrapper.
 
-        var_dump($githubData);
-        die();
+        $output->writeln("<info>INFO:</info> The issues are saved in the directory $path");
     }
 }
