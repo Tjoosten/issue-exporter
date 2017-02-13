@@ -51,8 +51,8 @@ so thanks!
 
 Guidelines for bug reports: 
 
-- **Validate and lint your code - Validate and lint your code to ensure your problem isn't caused by a simple error in your own code. 
-- **Use the GitHub issue search - check if the issue has already been reported. 
+- **Validate and lint your code** - Validate and lint your code to ensure your problem isn't caused by a simple error in your own code. 
+- **Use the GitHub issue search** - check if the issue has already been reported. 
 - **Check if the issue has been fixed** - try to reproduce it using the lastest `master` of `develop` branch in the repository.
 - **Isolate the problem** - ideally create a reduced test case and a live example. 
 
