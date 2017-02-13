@@ -1,0 +1,25 @@
+{
+    "name": "tjoosten/issue-exporter",
+    "description": "Clone your GitHub issues locally",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tjoosten",
+            "email": "Tjoosten3@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "^3.2",
+        "knplabs/github-api": "^2.0",
+        "php-http/guzzle6-adapter": "^1.1"
+    },
+    "config": {
+        "bin-dir": "./"
+    },
+    "autoload": {x
+        "psr-4": {
+            "Tjoosten\\Github\\Issues": "src/"
+        }
+    }
+}
