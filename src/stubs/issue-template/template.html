@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>{{ TITLE }}</title>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class='container '>
+            <header>
+                <p>
+                    <span class="badge {{ STATE }}">{{ STATE }}</span>
+                    <span class="url">{{ QUICKLINK }}</span>
+                </p>
+
+                <h1>{{ TITLE }}</h1>
+            </header>
+
+            <div class="comments">
+                <div class="comment">
+                    <div class="meta">
+                        <a class="person" href="https://github.com/{{ CREATED_BY }}">{{ CREATED_BY }}</a>
+                        <time>{{ CREATED_BY }}</time>
+                    </div>
+
+                    <div class="body">
+                        {{ BODY }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Javascripts -->
+        <script src="lib/jquery.js"></script>
+        <script src="lib/jquery.emoji.js"></script>
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('.comment').each(function(i, d){
+              $(d).emoji()
+            })
+          })
+        </script>
+    </body>
+<html>
