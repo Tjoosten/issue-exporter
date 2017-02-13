@@ -35,6 +35,8 @@ class ExportCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Data variables.
+
 
         // Start quering the GitHub API wrapper.
         $githubApi  = new Github();
