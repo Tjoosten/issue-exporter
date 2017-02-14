@@ -38,6 +38,11 @@ class ExportFileCommand extends Command
     /**
      * Command logic
      *
+     * // TODO: Document feature.
+     * // TODO: Set move operations for the assets.
+     * // TODO: Set function that wipe out the path argument. To clear all the previous issues.
+     * // TODO: Set input password hidden. The password is now visible.
+     *
      * @param   InputInterface  $input
      * @param   OutputInterface $output
      * @return  Void|int|null
@@ -47,34 +52,34 @@ class ExportFileCommand extends Command
         $helper = $this->getHelper('question'); // Load the helper.
 
         // Questions
-        $question_user   = new Question('GitHub user:');
-        $question_pass   = new Question('GitHub pass:');
+        $question_user = new Question('GitHub user:');
+        $question_pass = new Question('GitHub pass:');
         $question_method = new ChoiceQuestion('Authencation method: (default: auth_http_password)', [
             'auth_url_token', 'auth_url_client_id', 'auth_http_token', 'auth_http_password', 'auth_jwt'
         ], 0);
 
         // Data variables.
-        $user     = $helper->ask($input, $output, $question_user);
+        $user = $helper->ask($input, $output, $question_user);
         $password = $helper->ask($input, $output, $question_pass);
-        $method   = $helper->ask($input, $output, $question_method);
+        $method = $helper->ask($input, $output, $question_method);
 
-        $creator  = $input->getArgument('user');
-        $repo     = $input->getArgument('repo');
-        $path     = $input->getArgument('path');
+        $creator = $input->getArgument('user');
+        $repo = $input->getArgument('repo');
+        $path = $input->getArgument('path');
 
         // Start quering the GitHub API wrapper.
-        $githubApi  = new Github();
-        $githubData =  $githubApi->authencate($user, $password, $method)->getIssues($creator, $repo);
+        $githubApi = new Github();
+        $githubData = $githubApi->authencate($user, $password, $method)->getIssues($creator, $repo);
         // End querying the GitHub api wrapper.
 
-        // TODO: Set move operations for the assets.
-        // TODO: Set function that wipe out the path argument. To clear all the previous issues.
-        // TODO: Set input password hidden. The password is now visible.
-
         // Start writing the html files.
-        $progress   = new ProgressBar($output, count($githubData));
-        $markdown   = new Parsedown();
-        $ioStyle    = new SymfonyStyle($input, $output);
+        $progress = new ProgressBar($output, count($githubData));
+        $markdown = new Parsedown();
+        $ioStyle = new SymfonyStyle($input, $output);
+
+        if (is_dir($path) == false) { // Directory doesn't exists. So create one.
+            mkdir($path);
+        }
 
         foreach ($githubData as $issue) {
             $timestamp = date('F j, Y, g:i a', strtotime($issue['created_at']));
