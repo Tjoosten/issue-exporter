@@ -72,9 +72,9 @@ class ExportFileCommand extends Command
         // TODO: Set input password hidden. The password is now visible.
 
         // Start writing the html files.
-        $progress = new ProgressBar($output, count($githubData));
-        $markdown = new Parsedown();
-        $ioStyle  = new SymfonyStyle($input, $output);
+        $progress   = new ProgressBar($output, count($githubData));
+        $markdown   = new Parsedown();
+        $ioStyle    = new SymfonyStyle($input, $output);
 
         foreach ($githubData as $issue) {
             $timestamp = date('F j, Y, g:i a', strtotime($issue['created_at']));
@@ -96,6 +96,7 @@ class ExportFileCommand extends Command
         // END: Writing the html files.
 
         if (count($githubData) > 0) {
+            // Output
             $ioStyle->newLine();
             $output->writeln("<info>INFO:</info> The issues are saved in the directory $path");
         }
