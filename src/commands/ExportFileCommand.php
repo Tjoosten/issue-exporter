@@ -52,30 +52,30 @@ class ExportFileCommand extends Command
         $helper = $this->getHelper('question'); // Load the helper.
 
         // Questions
-        $question_user = new Question('GitHub user:');
-        $question_pass = new Question('GitHub pass:');
+        $question_user   = new Question('GitHub user:');
+        $question_pass   = new Question('GitHub pass:');
         $question_method = new ChoiceQuestion('Authencation method: (default: auth_http_password)', [
             'auth_url_token', 'auth_url_client_id', 'auth_http_token', 'auth_http_password', 'auth_jwt'
         ], 0);
 
         // Data variables.
-        $user = $helper->ask($input, $output, $question_user);
+        $user     = $helper->ask($input, $output, $question_user);
         $password = $helper->ask($input, $output, $question_pass);
-        $method = $helper->ask($input, $output, $question_method);
+        $method   = $helper->ask($input, $output, $question_method);
 
         $creator = $input->getArgument('user');
-        $repo = $input->getArgument('repo');
-        $path = $input->getArgument('path');
+        $repo    = $input->getArgument('repo');
+        $path    = $input->getArgument('path');
 
         // Start quering the GitHub API wrapper.
-        $githubApi = new Github();
+        $githubApi  = new Github();
         $githubData = $githubApi->authencate($user, $password, $method)->getIssues($creator, $repo);
         // End querying the GitHub api wrapper.
 
         // Start writing the html files.
         $progress = new ProgressBar($output, count($githubData));
         $markdown = new Parsedown();
-        $ioStyle = new SymfonyStyle($input, $output);
+        $ioStyle  = new SymfonyStyle($input, $output);
 
         if (is_dir($path) == false) { // Directory doesn't exists. So create one.
             mkdir($path);
@@ -101,6 +101,15 @@ class ExportFileCommand extends Command
         // END: Writing the html files.
 
         if (count($githubData) > 0) {
+
+            // TODO: Clean up if statement.
+            if (is_dir($path . DIRECTORY_SEPARATOR . 'css') == false) { // Directory doesn't exists. So create one.
+                mkdir($path . DIRECTORY_SEPARATOR . 'css');
+            }
+
+            // TODO: Clean up copy method.
+            copy(__DIR__ . '/../stubs/issue-template/css/style.css', $path.DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR . 'style.css');
+
             // Output
             $ioStyle->newLine();
             $output->writeln("<info>INFO:</info> The issues are saved in the directory $path");
